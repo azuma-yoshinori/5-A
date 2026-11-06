@@ -27,6 +27,9 @@ function update(dt) {
   if (y + r > canvas.height) {
     y = canvas.height - r;
     vy = -vy;
+
+    vx=vx*0.5;
+    vy=vy*0.5;
   }
   if (y - r < 0) {
     y = r;
@@ -53,5 +56,16 @@ function loop(now) {
   draw();
   requestAnimationFrame(loop);
 }
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowUp") {
+    vx = vx * 1.2;   // 上キー：速さを1.2倍にする
+    vy = vy * 1.2;
+  }
+  if (e.code === "ArrowDown") {
+    vx = vx * 0.8;   // 下キー：速さを0.8倍にする
+    vy = vy * 0.8;
+  }
+});
 
 requestAnimationFrame(loop);
